@@ -1,4 +1,6 @@
 
+.PHONY: web
+
 all:
 	python example.py
 
@@ -7,3 +9,5 @@ dev:
 
 web:
 	cp -rf ./web/* ./ 
+	git add .
+	git ci -am 'update'
