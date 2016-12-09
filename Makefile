@@ -4,3 +4,6 @@ all:
 
 dev:
 	python setup.py develop
+
+web:
+	cp -rf ./web/* ./ 

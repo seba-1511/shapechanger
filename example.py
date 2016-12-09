@@ -11,7 +11,8 @@ from time import sleep
 # ENV = 'BigInvertedPendulum-v1'
 # ENV = 'AmputedAnt-v1'
 # ENV = 'BigAnt-v1'
-ENV = 'ExtendedAnt-v1'
+# ENV = 'ExtendedAnt-v1'
+ENV = 'Finger-v1'
 
 
 if __name__ == '__main__':

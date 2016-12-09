@@ -5,6 +5,7 @@ from .big_ant import BigAntEnv
 from .small_inverted_pendulum import SmallInvertedPendulumEnv
 from .big_inverted_pendulum import BigInvertedPendulumEnv
 from .extended_ant import ExtendedAntEnv
+from .finger import FingerEnv
 
 register(
     id='AmputedAnt-v1',
@@ -29,4 +30,9 @@ register(
 register(
     id='ExtendedAnt-v1',
     entry_point='mj_transfer:ExtendedAntEnv',
+)
+
+register(
+    id='Finger-v1',
+    entry_point='mj_transfer:FingerEnv',
 )
