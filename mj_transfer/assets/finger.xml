@@ -1,0 +1,245 @@
+<mujoco model="finger">
+
+	<compiler angle="radian" inertiafromgeom="true"/>
+
+	<default>
+		<joint armature="1" damping="1" limited="true"/>
+		<geom contype="0" friction="1 0.1 0.1" rgba="0.7 0.7 0 1"/>
+		<site type="sphere" size="0.04"/>
+	</default>
+
+	<visual>
+	    <headlight ambient="0.4 0.4 0.4" diffuse="0.6 0.6 0.6" specular="0.5 0.5 0.5"/>
+	</visual>
+
+	<!--<option gravity="0 0 -9.81" integrator="RK4" timestep="0.01"/>-->
+	<option gravity="0 0 0" integrator="RK4" timestep="0.01"/>
+
+	<worldbody>
+
+        <light diffuse=".5 .5 .5" pos="0 0 3" dir="0 0 -1"/>
+
+		<!-- Arena -->
+		<geom name="ground" pos="0 0 -3" rgba="0.9 0.9 1 1" size="100 100 100" type="plane"/>
+
+		<!-- Arm -->
+		<body name="finger_base" pos="0 0 -2">
+		    <joint pos="0 0 0" armature="0.1" damping="0.1" limited="true" range="0 0" type="ball"/>
+		    <geom fromto="0 0 0 0 0 2" name="base0" rgba="0.85 0.4 0.9 1" size=".1" type="capsule"/>
+
+		    <geom name="base_wrap" type="sphere" pos="0 0 2" size="0.17" rgba="0 .7 .7 .5"/>
+		    <geom name="hand" type="sphere" pos="0 0 1" size="1" rgba="1 0.8 .74 .5"/>
+
+            <site name="EIP_1" pos="0.14 .05 .3"/>
+            <site name="EIP_2" pos="0.14 .05 1.7"/>
+
+            <site name="DI_1" pos="0 -.15 .3"/>
+            <site name="DI_2" pos="0 -.15 1.45"/>
+
+            <site name="PI_1" pos="0 .15 .3"/>
+            <site name="PI_2" pos="0 .15 1.45"/>
+
+            <site name="FDP_1" pos="-.19 0 .3"/>
+            <site name="FDP_2" pos="-.19 0 1.7"/>
+
+            <site name="FDS_1" pos="-.24 0 .4"/>
+            <site name="FDS_2" pos="-.24 0 1.8"/>
+
+            <site name="LUM_1" pos="-.14 0 1"/>
+            <site name="LUM_2" pos="-.1 -.04 1.4"/>
+
+            <site name="EDC_1" size=".05" pos="0.14 -.05 .3"/>
+            <site name="EDC_2" size=".05" pos="0.15 0 1.7"/>
+
+            <body name="finger0" pos="0 0 2.1">
+                <geom fromto="0 0 0 0 0 1.3" name="link0" rgba=".85 .4 .9 1" size=".1" type="capsule"/>
+                <joint axis="0 1 0" limited="true" range="-1.65 .6" name="joint0-1" pos="0 0 0" armature="0.1" damping="0.1" type="hinge"/>
+                <joint axis="1 0 0" limited="true" range="-.2 .05" name="joint0-2" pos="0 0 0" armature="0.1" damping="0.1" type="hinge"/>
+
+                <geom name="finger0_wrap" type="sphere" pos="0 0 1.3" size="0.17" rgba="0 .7 .7 .5"/>
+
+                <site name="EIP_3" pos="0.14 .05 .04"/>
+                <site name="EIP_4" pos="0.14 .05 1.1"/>
+
+                <site name="DI_3" pos="0.09 -.13 .2"/>
+                <site name="PI_3" pos="0.09 .13 .4"/>
+
+                <site name="FDP_3" pos="-.14 0 .3"/>
+                <site name="FDP_4" pos="-.14 0 1.02"/>
+
+                <site name="FDS_3" pos="-.19 0 .2"/>
+                <site name="FDS_4" pos="-.21 0 .65"/>
+
+                <site name="FDS_L_1" pos="-.04 -.1 1"/>
+                <site name="FDS_R_1" pos="-.04 0.1 1"/>
+
+                <site name="LUM_3" pos="-.04 -.14 .3"/>
+                <site name="LUM_4" pos="-.02 -.16 .9"/>
+
+                <site name="EDC_3" size=".05" pos="0.15 0 .08"/>
+                <site name="EDC_4" size=".05" pos="0.15 0 1.15"/>
+
+                <body name="finger1" pos="0 0 1.3">
+                    <joint axis="0 1 0" limited="true" name="joint1" pos="0 0 0" range="-1 0.1" armature="0.1" damping="0.1" type="hinge"/>
+                    <geom fromto="0 0 0 0 0 0.9" name="link1" rgba=".85 .4 .9 1" size=".1" type="capsule"/>
+
+                    <geom name="finger1_wrap" type="sphere" pos="0 0 0.9" size="0.15" rgba="0 .7 .7 .5"/>
+
+                    <site name="EIP_5" size=".05" pos="0.16 0 .25"/>
+
+                    <site name="FDP_5" pos="-.14 0 .2"/>
+                    <site name="FDP_6" pos="-.14 0 .6"/>
+
+                    <site name="FDS_L_2" pos="-.08 -.08 .2"/>
+                    <site name="FDS_R_2" pos="-.08 0.08 .2"/>
+
+                    <site name="EDC_L_1" size=".05" pos=".12 -.13 .2"/>
+                    <site name="EDC_R_1" size=".05" pos=".12 0.13 .2"/>
+                    <site name="EDC_L_2" size=".05" pos=".12 -.13 .5"/>
+                    <site name="EDC_R_2" size=".05" pos=".12 0.13 .5"/>
+                    <site name="EDC_5" size=".05" pos="0.14 0 .75"/>
+
+                    <body name="finger2" pos="0 0 0.9">
+                        <joint axis="0 1 0" limited="true" name="joint2" pos="0 0 0" range="-1 0" armature="10" damping="1" type="hinge"/>
+                        <geom fromto="0 0 0 0 0 0.5" name="link2" rgba=".85 .4 .9 1" size=".1" type="capsule"/>
+
+                        <site name="FDP_7" pos="-.14 0 .2"/>
+                        <site name="EDC_6" size=".05" pos="0.14 0 .2"/>
+
+                        <body name="fingertip" pos="0 0 0.52">
+                            <geom name="fingertip" pos="0 0 0" rgba="0.0 0.8 0.6 1" size=".09" type="sphere"/>
+                        </body>
+
+                    </body>
+                </body>
+            </body>
+        </body>
+
+		<!-- Target -->
+		<body name="target" pos="0 0 2">
+			<joint armature="0" axis="1 0 0" damping="0" limited="true" name="target_x" pos="0 0 0" range="-1.5 -0.5" ref=".1" stiffness="0" type="slide"/>
+			<joint armature="0" axis="0 1 0" damping="0" limited="true" name="target_y" pos="0 0 0" range="-0.3 0.3" ref="-.1" stiffness="0" type="slide"/>
+			<joint armature="0" axis="0 0 1" damping="0" limited="true" name="target_z" pos="0 0 0" range="-1.8 0.1" ref="-.1" stiffness="0" type="slide"/>
+			<geom name="target" pos="0 0 0" rgba="0 1 0 1" size=".09" type="sphere"/>
+		</body>
+
+	</worldbody>
+
+    <!-- Tendons -->
+    <tendon>
+
+        <spatial name="EIP" width="0.02" rgba=".95 .3 .3 1" limited="true" range="0 15">
+            <site site="EIP_1"/>
+            <site site="EIP_2"/>
+            <geom geom="base_wrap"/>
+            <site site="EIP_3"/>
+            <site site="EIP_4"/>
+            <geom geom="finger0_wrap"/>
+            <site site="EIP_5"/>
+        </spatial>
+
+        <spatial name="DI" width="0.02" rgba=".95 .3 .3 1" limited="true" range="0 4">
+            <site site="DI_1"/>
+            <site site="DI_2"/>
+            <geom geom="base_wrap"/>
+            <site site="DI_3"/>
+        </spatial>
+
+        <spatial name="PI" width="0.02" rgba=".95 .3 .3 1" limited="true" range="0 4">
+            <site site="PI_1"/>
+            <site site="PI_2"/>
+            <geom geom="base_wrap"/>
+            <site site="PI_3"/>
+        </spatial>
+
+        <spatial name="FDP" width="0.03" rgba=".95 .3 .3 1" limited="true" range="0 5">
+            <site site="FDP_1"/>
+            <site site="FDP_2"/>
+            <geom geom="base_wrap"/>
+            <site site="FDP_3"/>
+            <site site="FDP_4"/>
+            <geom geom="finger0_wrap"/>
+            <site site="FDP_5"/>
+            <site site="FDP_6"/>
+            <geom geom="finger1_wrap"/>
+            <site site="FDP_7"/>
+        </spatial>
+
+        <spatial name="FDS" width="0.02" rgba=".95 .3 .3 1" limited="true" range="0 5">
+            <site site="FDS_1"/>
+            <site site="FDS_2"/>
+            <geom geom="base_wrap"/>
+            <site site="FDS_3"/>
+            <site site="FDS_4"/>
+            <pulley divisor="2"/>
+            <site site="FDS_4"/>
+            <site site="FDS_L_1"/>
+            <geom geom="finger0_wrap"/>
+            <site site="FDS_L_2"/>
+            <pulley divisor="2"/>
+            <site site="FDS_4"/>
+            <site site="FDS_R_1"/>
+            <geom geom="finger0_wrap"/>
+            <site site="FDS_R_2"/>
+        </spatial>
+
+        <spatial name="LUM" width="0.02" rgba=".95 .3 .3 1" limited="true" range="0 8">
+            <site site="LUM_1"/>
+            <site site="LUM_2"/>
+            <geom geom="base_wrap"/>
+            <site site="LUM_3"/>
+            <site site="LUM_4"/>
+            <geom geom="finger0_wrap"/>
+            <site site="EIP_5"/>
+        </spatial>
+
+        <spatial name="EDC" width="0.04" rgba=".95 .3 .3 1" limited="true" range="0 15">
+            <site site="EDC_1"/>
+            <site site="EDC_2"/>
+            <geom geom="base_wrap"/>
+            <site site="EDC_3"/>
+            <site site="EDC_4"/>
+
+            <pulley divisor="2"/>
+            <site site="EDC_4"/>
+            <geom geom="finger0_wrap"/>
+            <site site="EIP_5"/>
+
+            <pulley divisor="2"/>
+            <site site="EDC_4"/>
+            <geom geom="finger0_wrap"/>
+            <site site="EDC_L_1"/>
+            <site site="EDC_L_2"/>
+            <site site="EDC_5"/>
+            <geom geom="finger1_wrap"/>
+            <site site="EDC_6"/>
+
+            <pulley divisor="2"/>
+            <site site="EDC_4"/>
+            <geom geom="finger0_wrap"/>
+            <site site="EDC_R_1"/>
+            <site site="EDC_R_2"/>
+            <site site="EDC_5"/>
+            <geom geom="finger1_wrap"/>
+            <site site="EDC_6"/>
+        </spatial>
+
+    </tendon>
+
+	<actuator>
+	    <!--
+		<motor ctrllimited="true" ctrlrange="-1.0 1.0" gear="200.0" joint="joint0-1"/>
+		<motor ctrllimited="true" ctrlrange="-1.0 1.0" gear="200.0" joint="joint0-2"/>
+		<motor ctrllimited="true" ctrlrange="-1.0 1.0" gear="200.0" joint="joint1"/>
+		<motor ctrllimited="true" ctrlrange="-1.0 1.0" gear="200.0" joint="joint2"/>
+		-->
+		<motor ctrllimited="true" ctrlrange="0 1.0" gear="200.0" tendon="EIP"/>
+		<motor ctrllimited="true" ctrlrange="0 1.0" gear="200.0" tendon="DI"/>
+		<motor ctrllimited="true" ctrlrange="0 1.0" gear="200.0" tendon="EDC"/>
+		<motor ctrllimited="true" ctrlrange="0 1.0" gear="200.0" tendon="PI"/>
+		<motor ctrllimited="true" ctrlrange="0 1.0" gear="200.0" tendon="LUM"/>
+		<motor ctrllimited="true" ctrlrange="0 1.0" gear="200.0" tendon="FDS"/>
+		<motor ctrllimited="true" ctrlrange="0 1.0" gear="200.0" tendon="FDP"/>
+	</actuator>
+
+</mujoco>
