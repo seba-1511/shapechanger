@@ -113,6 +113,9 @@ The sample XML code snippet below defines a tendon that connects the base joint 
 
 For this finger, the EIP and LUM tendons each wrapped around 2 joints and contained 5 `site` elements. DI and PI each had 1 joint and 3 elements. The FDP had 3 joints and 7 `site`s. EDC and FDS both branched, wrapped around 3 joints, and contained more than 7 elements. For more documentation on MuJoCo XML files, see: [http://www.mujoco.org/book/modeling.html](http://www.mujoco.org/book/modeling.html). 
 
+### Acknowledgements
+We are grateful to the entire [BBDL Lab](http://valerolab.org) at USC for their help along the project. In particular, we thank Brian Cohn and Prof. Valero-Cuevas for their supervision. We would also like to thank Prof. Emo Todorov for his help on using tendons in MuJoCo.
+
 
 [^valero-cuevas]: Valero-Cuevas, F.J. *Fundamentals of Neuromechanics.*  London: Springer, 2015.
 
