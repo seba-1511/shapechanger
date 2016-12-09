@@ -8,7 +8,7 @@ Additional MuJoCo environments for OpenAI Gym.
 3. You can now `import mj_transfer` to register them, and `gym.make('BigAnt-v1')` if you want to use the BigAnt env.
 
 # MuJoCo Tutorial
-You can find a short tutorial for that explains the basics of MuJoCo there: [seba-1511.github.io/mj_transfer](seba-1511.github.io/mj_transfer)
+You can find a short tutorial for that explains the basics of MuJoCo there: [seba-1511.github.io/mj_transfer](http://seba-1511.github.io/mj_transfer)
 
 ## Available Environments
 
