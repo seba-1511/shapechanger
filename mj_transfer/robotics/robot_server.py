@@ -5,7 +5,7 @@ import struct as st
 
 DEFAULT_PORT = 5000
 DEFAULT_IP = '192.168.1.3'
-DEFAULT_IP = '127.0.0.1'
+# DEFAULT_IP = '127.0.0.1'
 BUFFER_SIZE = 32
 
 

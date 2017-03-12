@@ -3,10 +3,28 @@
 import gym
 import mj_transfer
 
+try:
+    # Windows
+    from msvcrt import getch
+except ImportError:
+    # Unix
+    import sys
+    import tty
+    import termios
+
+    def getch():
+        fd = sys.stdin.fileno()
+        old = termios.tcgetattr(fd)
+        try:
+            tty.setraw(fd)
+            return sys.stdin.read(1)
+        finally:
+            termios.tcsetattr(fd, termios.TCSADRAIN, old)
+
 if __name__ == '__main__':
     env = gym.make('NewBright-v1')
     while True:
-        c = raw_input('Command: ')
+        c = getch()
         if c == 'q':
             break
         action = [0, 0, 0, 0]

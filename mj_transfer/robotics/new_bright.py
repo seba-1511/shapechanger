@@ -27,6 +27,8 @@ class NewBrightEnv(object):
         action = [min(max(0.0, a), 1.0) for a in action]
         msg = st.pack('f'*len(action), *action)
         self.socket.send(msg)
+        img = self.socket.recv(300)
+        print 'img len: ', len(img)
 
         return action
 
