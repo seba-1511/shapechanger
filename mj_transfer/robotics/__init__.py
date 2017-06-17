@@ -11,4 +11,4 @@ try:
         entry_point='mj_transfer:NewBrightEnv',
     )
 except:
-    print 'OpenAI Gym not installed'
+    print('OpenAI Gym not installed')

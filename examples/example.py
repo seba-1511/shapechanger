@@ -23,7 +23,7 @@ if __name__ == '__main__':
         while True:
             a = (np.random.rand(*env.action_space.shape) - 0.5) * 1.1
             s, r, d, _ = env.step(a)
-            # print 'Reward: ', r
+            # print('Reward: ', r)
             env.render()
             # sleep(0.1)
             # a += 0.1

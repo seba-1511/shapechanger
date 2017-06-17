@@ -4,7 +4,7 @@ import socket as sk
 import struct as st
 
 DEFAULT_PORT = 5000
-DEFAULT_IP = '192.168.1.3'
+DEFAULT_IP = '192.168.42.1'
 # DEFAULT_IP = '127.0.0.1'
 BUFFER_SIZE = 32
 
@@ -17,7 +17,7 @@ class RobotServer(object):
         self.socket.bind((self.ip, self.port))
         self.socket.listen(1)
         conn, addr = self.socket.accept()
-        print 'Address: ', addr
+        print('Address: ', addr)
         self.conn = conn
 
     def recv(self):

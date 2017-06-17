@@ -22,7 +22,7 @@ class RobotServer(object):
         self.socket.bind((self.ip, self.port))
         self.socket.listen(1)
         conn, addr = self.socket.accept()
-        print 'Address: ', addr
+        print('Address: ', addr)
         self.conn = conn
 
     def recv(self):
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     try:
         while True:
             data = master.recv()
-            print 'Received data:', data
+            print('Received data:', data)
             send_positive(data[0], p1, p2) #go forward
             send_negative(data[1], p1, p2) #go backward
             send_positive(data[3], p3, p4) #go left
@@ -77,7 +77,7 @@ if __name__ == '__main__':
                     
     except Exception as e:
             master.shutdown()
-            print e
+            print(e)
 
     p1.stop()
     p2.stop()

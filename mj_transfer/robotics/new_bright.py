@@ -2,6 +2,14 @@
 
 import socket as sk
 import struct as st
+import numpy as np
+
+try:
+    from cStringIO import StringIO
+except:
+    from io import StringIO
+
+
 from .robot_server import DEFAULT_PORT, DEFAULT_IP
 
 
@@ -27,10 +35,23 @@ class NewBrightEnv(object):
         action = [min(max(0.0, a), 1.0) for a in action]
         msg = st.pack('f'*len(action), *action)
         self.socket.send(msg)
-        img = self.socket.recv(300)
-        print 'img len: ', len(img)
+        img = self.recv_image()
+        return img
 
-        return action
+    def recv_image(self):
+        img_size = self.socket.recv(8)
+        img_size = int(img_size)
+        ultimate_buffer = ''
+        while len(ultimate_buffer) < img_size:
+            receiving_buffer = self.socket.recv(2048)
+            # if not receiving_buffer: break
+            ultimate_buffer += receiving_buffer
+            print('-',)
+        print('')
+        final_image = np.load(StringIO(ultimate_buffer))['frame']
+        # final_image = np.fromstring(ultimate_buffer)
+        return final_image
+        return [0, 0]
 
     def reset(self):
         pass
