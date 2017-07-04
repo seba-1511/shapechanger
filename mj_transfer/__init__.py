@@ -1,6 +1,6 @@
 from gym.envs.registration import register
 
-from .robotics import *
+from .robots import *
 
 try:
     from .amputed_ant import AmputedAntEnv

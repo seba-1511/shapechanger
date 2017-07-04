@@ -2,6 +2,7 @@
 
 import gym
 import mj_transfer
+from mj_transfer.robots import NewBrightEnv
 
 from time import time
 import matplotlib.pyplot as plt
@@ -30,8 +31,9 @@ except ImportError:
 if __name__ == '__main__':
     env = gym.make('NewBright-v1')
     time_init = time()
-    action = [0.0, 0.0, 0.0, 0.0]
+    env.reset()
     while True:
+        action = [0.0, 0.0, 0.0, 0.0]
         c = getch()
         if c == 'q':
             break
@@ -46,14 +48,6 @@ if __name__ == '__main__':
         # TODO: Move the following code in env.step ?
         # TODO: Keep everything to 1.0 if key pressed ?
         # TODO: Deal with opposing directions ?
-        if time() - time_init > FREQUENCY:
-            s_a = sum(action)
-            if not s_a == 0:
-                print(action)
-                s = env.step(action)
-                # import pdb; pdb.set_trace()
-                # imsave('./feed.jpg', s)
-                # plt.imshow(toimage(s))
-                # toimage(s).show()
-            action = [0.0, 0.0, 0.0, 0.0]
-            time_init = time()
+        env.step(action)
+        # env.render()
+    env.disconnect()
