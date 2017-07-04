@@ -1,5 +1,7 @@
-# mj_transfer
-Additional MuJoCo environments for OpenAI Gym.
+# Shapechanger
+Formerly knows as mj_transfer.
+
+Additional transfer learning environments for OpenAI Gym.
 
 ## Install Instructions
 
