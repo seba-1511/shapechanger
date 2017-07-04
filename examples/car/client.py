@@ -34,9 +34,9 @@ if __name__ == '__main__':
     env.reset()
     while True:
         action = [0.0, 0.0, 0.0, 0.0]
-        # c = getch()
-        c = None
-        sleep(0.2)
+        c = getch()
+        # c = None
+        # sleep(0.2)
         if c == 'q':
             break
         if c == 'w':
@@ -48,7 +48,6 @@ if __name__ == '__main__':
         if c == 'a':
             action[3] = 1.0
 
-        action = [1.0, 0.0, 1.0, 0.0]
         # TODO: Move the following code in env.step ?
         # TODO: Keep everything to 1.0 if key pressed ?
         # TODO: Deal with opposing directions ?

@@ -5,8 +5,14 @@ all:
 car:
 	python examples/car/client.py
 
-car-server:
-	python examples/car/server.py
+car-record:
+	python examples/car/record.py
+
+car-train:
+	python examples/car/train.py
+
+car-drive:
+	python examples/car/drive.py
 
 dev:
 	python setup.py develop
