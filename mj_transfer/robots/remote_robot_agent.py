@@ -4,7 +4,7 @@ import socket as sk
 import struct as st
 
 
-class RemoteRobot(object):
+class RemoteRobotAgent(object):
 
     def __init__(self, ip, port):
         self.ip = ip

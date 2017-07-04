@@ -2,17 +2,17 @@
 
 import time
 
-from .remote_robot_agent import RemoteRobotEnv
+from .remote_robot_env import RemoteRobotEnv
 
 
-class RemoteNewBright(RemoteRobotEnv):
+class NewBrightEnv(RemoteRobotEnv):
 
     def render(self):
         self.current_state.show()
 
 
 if __name__ == '__main__':
-    env = RemoteNewBright('192.168.42.1', 5000)
+    env = NewBrightEnv('192.168.42.1', 5000)
 
     env.reset()
     for _ in range(10):

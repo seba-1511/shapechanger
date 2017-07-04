@@ -4,12 +4,15 @@ import io
 import time
 import socket as sk
 import struct as st
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
+except:
+    pass
 
 from PIL import Image
 from threading import Thread
 
-from .remote_robot_agent import RemoteRobot, forever
+from .remote_robot_agent import RemoteRobotAgent, forever
 
 
 BUFFER_SIZE = 16
@@ -28,6 +31,7 @@ try:
     import picamera
     DEBUG = False
 except ImportError:
+    pass
     class cdict(dict):
         def __enter__(self): return cdict()
 
@@ -35,9 +39,11 @@ except ImportError:
     picamera = cdict()
     picamera.PiCamera = lambda: cdict()
     DEBUG = True
-debug_img = Image.open('asdf.jpg')
-debug_stream = io.BytesIO()
-debug_img.save(debug_stream, format='jpeg')
+# debug_img = Image.open('asdf.jpg')
+# debug_stream = io.BytesIO()
+# debug_img.save(debug_stream, format='jpeg')
+debug_img = None
+debug_stream = None
 
 
 def infinite_buffer(callback):
@@ -80,7 +86,7 @@ def init_camera_capture(callback=None):
 
 #********************* New Bright Architecture *********************
 
-class NewBrightAgent(RemoteRobot):
+class NewBrightAgent(RemoteRobotAgent):
 
     def __init__(self, ip, port):
         GPIO.setmode(GPIO.BOARD)
