@@ -24,6 +24,8 @@ IN1 = 15
 IN2 = 13
 IN3 = 11
 IN4 = 7
+PWM1 = 20
+PWM2 = 21
 
 
 #********************* Camera Stuff *********************
@@ -98,10 +100,14 @@ class NewBrightAgent(RemoteRobotAgent):
         self.p2 = GPIO.PWM(IN2, 50)
         self.p3 = GPIO.PWM(IN3, 50)
         self.p4 = GPIO.PWM(IN4, 50)
+        self.pwm1 = GPIO.PWM(PWM1, 50)
+        self.pwm2 = GPIO.PWM(PWM2, 50)
         self.p1.start(0)
         self.p2.start(0)
         self.p3.start(0)
         self.p4.start(0)
+        self.pwm1.start(0)
+        self.pwm2.start(0)
         super(NewBrightAgent, self).__init__(ip, port)
 
     def clean(self):

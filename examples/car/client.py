@@ -5,7 +5,6 @@ import mj_transfer
 from mj_transfer.robots import NewBrightEnv
 
 from time import time, sleep
-import matplotlib.pyplot as plt
 from scipy.misc import imshow, toimage, imsave
 
 FREQUENCY = 0.25

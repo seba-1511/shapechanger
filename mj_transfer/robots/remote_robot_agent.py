@@ -3,6 +3,8 @@
 import socket as sk
 import struct as st
 
+BUFFER_SIZE = 16
+
 
 class RemoteRobotAgent(object):
 
@@ -44,8 +46,9 @@ def forever(fn):
     while True:
         try:
             fn()
-        except Exception, e:
-            print(str(e))
+        except Exception:
+            pass
+            # print(str(e))
 
 def main():
     robot = RemoteRobot('192.168.42.1', 5000)

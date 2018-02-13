@@ -54,9 +54,10 @@ class RemoteRobotEnv(object):
         self.current_state = state
 
     def recv_image(self, img_size):
-        img = ''
+        img = bytes()
         while len(img) < img_size:
             img += self.socket.recv(2048)
+            # img += self.socket.recv(2048).decode("utf-8")
         img = Image.open(io.BytesIO(img))
         return img
 

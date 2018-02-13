@@ -9,8 +9,6 @@ from random import random
 import csv
 
 from time import time, sleep
-import matplotlib.pyplot as plt
-from scipy.misc import imshow, toimage, imsave
 
 try:
     # Windows
@@ -37,38 +35,42 @@ SAVE_FOLDER = os.path.join(CURR_DIRR, SAVE_FOLDER)
 if not os.path.exists(SAVE_FOLDER):
     os.makedirs(SAVE_FOLDER)
 SAVE_CSV = os.path.join(SAVE_FOLDER, 'labels.csv')
-f_csv = open(SAVE_CSV, 'w')
-writer = csv.writer(f_csv)
 
 if __name__ == '__main__':
-    env = NewBrightEnv('192.168.42.1', 5000)
-    time_init = time()
-    env.reset()
-    while True:
-        action = [0.0, 0.0, 0.0, 0.0]
-        c = getch()
-        if c == 'q':
-            break
-        if c == 'w':
-            action[0] = 1.0
-        if c == 's':
-            action[1] = 1.0
-        if c == 'd':
-            action[2] = 1.0
-        if c == 'a':
-            action[3] = 1.0
+    with open(SAVE_CSV, 'a') as f_csv:
+        f_csv.seek(0, os.SEEK_END)
+        writer = csv.writer(f_csv)
+        env = NewBrightEnv('192.168.42.1', 5000)
+        time_init = time()
+        env.reset()
+        while True:
+            action = [0.0, 0.0, 0.0, 0.0]
+            c = getch()
+            if c == 'q':
+                break
+            if c == 'w':
+                action[0] = 1.0
+            if c == 's':
+                action[1] = 1.0
+            if c == 'd':
+                action[2] = 1.0
+            if c == 'a':
+                action[3] = 1.0
 
-        # action = [1.0, 0.0, 1.0, 0.0]
-        # TODO: Move the following code in env.step ?
-        # TODO: Keep everything to 1.0 if key pressed ?
-        # TODO: Deal with opposing directions ?
-        state, reward, done, info = env.step(action)
-        state_fname = str(time()) + '_' + str(random()) + '.jpg'
-        state_path = os.path.join(SAVE_FOLDER, state_fname)
-        state.save(state_path)
-        row = [state_fname, action[0], action[1], action[2], action[3]]
-        print(row)
-        writer.writerow(row)
-        # env.render()
-    env.disconnect()
-    f_csv.close()
+            # action = [1.0, 0.0, 1.0, 0.0]
+            # TODO: Keep everything to 1.0 if key pressed ?
+            # TODO: Deal with opposing directions ?
+            state, reward, done, info = env.step(action)
+            state_fname = str(time()) + '_' + str(random()) + '.jpg'
+            state_path = os.path.join(SAVE_FOLDER, state_fname)
+            # state_fname = state_fname.decode('utf-8')
+            state.save(state_path)
+            row = [state_fname,
+                   action[0],
+                   action[1],
+                   action[2],
+                   action[3]]
+            print(row)
+            writer.writerow(row)
+            f_csv.flush()
+        env.disconnect()

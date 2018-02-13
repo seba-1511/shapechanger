@@ -5,15 +5,13 @@ import mj_transfer
 from mj_transfer.robots import NewBrightEnv
 
 from time import time, sleep
-import matplotlib.pyplot as plt
-from scipy.misc import imshow, toimage, imsave
 
 import torch as th
 from torch.autograd import Variable as V
 from torchvision import transforms
 from train import DrivingNet
 
-FREQUENCY = 0.25
+FREQUENCY = 0.0
 
 try:
     # Windows
@@ -38,15 +36,16 @@ if __name__ == '__main__':
     time_init = time()
     model = DrivingNet()
     model.load_state_dict(th.load('./model.pth'))
+    model.eval()
     transform = transforms.Compose([
             transforms.ToTensor(),
-            transforms.Normalize([0.5, 0.5, 0.5], [0.25, 0.25, 0.25]),
+            transforms.Normalize([0.43, 0.43, 0.43], [0.25, 0.25, 0.25]),
         ])
     state = env.reset()
     while True:
         action = [0.0, 0.0, 0.0, 0.0]
         # print('waiting for action')
-        # c = getch()
+        c = getch()
         c = None
         sleep(0.7)
         if c == 'q':
@@ -58,7 +57,7 @@ if __name__ == '__main__':
         action = model(state.view(1, state.size(0), state.size(1), state.size(2)))
         action = action.data.tolist()[0]
         print(action)
-        action = [1.0 if a > 0.2 else 0.0 for a in action]
+        action = [1.0 if a > -1.2 else 0.0 for a in action]
 
         # TODO: Move the following code in env.step ?
         # TODO: Keep everything to 1.0 if key pressed ?
